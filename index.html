@@ -1,73 +1,347 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AKARI Agent Reports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a1a;--bg2:#12122a;--tx:#e8e8f8;--tx2:#a8a8c8;--tx3:#6868a8;--gold:#c8a96e;--border:rgba(200,169,110,0.15);}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;padding:0;}
-.header{background:var(--bg2);padding:24px 16px;border-bottom:1px solid var(--border);}
-.header h1{font-size:22px;color:var(--gold);margin-bottom:4px;}
-.header p{font-size:13px;color:var(--tx2);}
-.content{padding:16px;}
-table{width:100%;border-collapse:collapse;font-size:14px;}
-th{background:var(--bg2);color:var(--tx2);padding:10px 12px;text-align:left;border-bottom:2px solid var(--border);font-size:12px;letter-spacing:.05em;}
-td{padding:12px;border-bottom:1px solid var(--border);vertical-align:middle;}
-tr:hover td{background:rgba(200,169,110,0.04);}
-a{color:var(--gold);text-decoration:none;}
-.badge{font-size:11px;padding:3px 8px;border-radius:4px;color:#fff;display:inline-block;white-space:nowrap;}
-.footer{text-align:center;font-size:12px;color:var(--tx3);padding:24px 16px;}
+:root{
+  --bg:#0a0a1a;--bg2:#12122a;--bg3:#1a1a3e;--bg4:#0f0f25;
+  --tx:#e8e8f8;--tx2:#a8a8c8;--tx3:#6868a8;
+  --gold:#c8a96e;--gold2:rgba(200,169,110,.15);--gold3:rgba(200,169,110,.08);
+  --border:rgba(200,169,110,.15);--border2:rgba(200,169,110,.08);
+  --purple:#7c5cbf;--r:12px;
+}
+html,body{min-height:100vh;background:var(--bg);color:var(--tx);font-family:'Shippori Mincho',serif;font-size:14px;}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+button{cursor:pointer;border:none;outline:none;font-family:inherit;}
+
+/* HEADER */
+.site-header{background:linear-gradient(160deg,#0f0a1e 0%,#12122a 100%);border-bottom:1px solid var(--border);padding:20px 16px 16px;}
+.site-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--gold);letter-spacing:.05em;}
+.site-sub{font-size:12px;color:var(--tx3);margin-top:4px;}
+
+/* STATS */
+.stats-bar{display:flex;gap:12px;flex-wrap:wrap;padding:16px;background:var(--bg2);border-bottom:1px solid var(--border2);}
+.stat-card{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;min-width:100px;flex:1;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--gold);line-height:1;}
+.stat-label{font-size:11px;color:var(--tx3);margin-top:4px;letter-spacing:.05em;}
+.stat-card.unread .stat-num{color:#fff;}
+.stat-card.unread{border-color:rgba(200,169,110,.4);background:rgba(200,169,110,.07);}
+
+/* CONTROLS */
+.controls{padding:12px 16px;background:var(--bg2);border-bottom:1px solid var(--border2);display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.search-wrap{flex:1;min-width:160px;position:relative;}
+.search-wrap input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 12px 8px 32px;color:var(--tx);font-family:inherit;font-size:13px;}
+.search-wrap input::placeholder{color:var(--tx3);}
+.search-wrap input:focus{outline:none;border-color:var(--gold);}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--tx3);pointer-events:none;}
+.filter-group{display:flex;gap:6px;flex-wrap:wrap;}
+.filter-btn{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:6px 12px;color:var(--tx2);font-size:12px;transition:.15s;}
+.filter-btn:hover{border-color:var(--gold);color:var(--gold);}
+.filter-btn.active{background:var(--gold2);border-color:var(--gold);color:var(--gold);}
+.filter-select{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:6px 8px;color:var(--tx2);font-size:12px;font-family:inherit;}
+.filter-select:focus{outline:none;border-color:var(--gold);}
+
+/* REPORT LIST */
+.report-list{padding:12px 16px;display:flex;flex-direction:column;gap:10px;}
+.report-card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r);padding:14px 16px;display:flex;align-items:flex-start;gap:14px;transition:.2s;position:relative;overflow:hidden;}
+.report-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--card-accent,var(--border));}
+.report-card:hover{border-color:rgba(200,169,110,.3);background:var(--bg3);}
+.report-card.is-read{opacity:.6;}
+.report-card.is-read .card-title{color:var(--tx2);}
+
+/* UNREAD DOT */
+.unread-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px;box-shadow:0 0 6px rgba(200,169,110,.6);transition:.2s;}
+.is-read .unread-dot{background:var(--tx3);box-shadow:none;}
+
+/* CARD CONTENT */
+.card-body{flex:1;min-width:0;}
+.card-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;align-items:center;}
+.badge-agent{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;color:#fff;letter-spacing:.04em;white-space:nowrap;}
+.badge-new{background:#c8a96e;color:#0a0a1a;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:.04em;animation:pulse 2s infinite;}
+.badge-today{background:#e74c3c;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:.04em;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--tx);margin-bottom:4px;line-height:1.3;}
+.card-summary{font-size:12px;color:var(--tx3);line-height:1.6;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.card-meta{display:flex;gap:12px;font-size:11px;color:var(--tx3);flex-wrap:wrap;align-items:center;}
+.card-role{font-size:11px;padding:1px 6px;border-radius:3px;background:var(--bg3);border:1px solid var(--border2);}
+
+/* CARD ACTIONS */
+.card-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex-shrink:0;}
+.btn-read{background:var(--gold2);border:1px solid var(--gold);border-radius:6px;color:var(--gold);font-size:12px;padding:6px 12px;transition:.15s;white-space:nowrap;}
+.btn-read:hover{background:var(--gold);color:#0a0a1a;}
+.btn-toggle{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--tx3);font-size:11px;padding:4px 8px;transition:.15s;}
+.btn-toggle:hover{border-color:var(--tx2);color:var(--tx2);}
+
+/* EMPTY */
+.empty{text-align:center;padding:60px 20px;color:var(--tx3);}
+.empty-ico{font-size:36px;margin-bottom:12px;}
+
+/* FOOTER */
+.footer{text-align:center;padding:24px 16px;font-size:12px;color:var(--tx3);border-top:1px solid var(--border2);margin-top:12px;}
+
+/* THEME BAR (rotation progress) */
+.theme-bar{padding:12px 16px;background:var(--bg4);border-bottom:1px solid var(--border2);display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.theme-label{font-size:11px;color:var(--tx3);letter-spacing:.06em;margin-right:4px;}
+.theme-pill{background:var(--bg3);border:1px solid var(--border2);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--tx2);}
+.theme-pill.agent04{border-color:rgba(155,89,182,.4);color:#9b59b6;}
+
+@media(max-width:480px){
+  .stats-bar{gap:8px;}
+  .stat-card{min-width:80px;padding:10px 12px;}
+  .stat-num{font-size:22px;}
+  .report-card{flex-direction:column;gap:10px;}
+  .card-actions{flex-direction:row;width:100%;justify-content:flex-end;}
+  .controls{flex-direction:column;}
+  .search-wrap{min-width:100%;}
+}
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>✨ AKARI Agent Reports</h1>
-  <p>スリーライツ株式会社（設立準備中）— 週次エージェントレポート</p>
+
+<div class="site-header">
+  <div class="site-title">✨ AKARI Reports</div>
+  <div class="site-sub">スリーライツ株式会社（設立準備中）— 週次エージェントレポートダッシュボード</div>
 </div>
-<div class="content">
-  <table>
-    <thead><tr><th>エージェント</th><th>役割</th><th>週</th><th>レポート</th></tr></thead>
-    <tbody>
-    <tr onclick="location.href='agent_06/2026-W17-stage2.html'" style="cursor:pointer">
-      <td><span class="badge" style="background:#16a085">⚡ Agent 06</span></td>
-      <td>Content Factory</td>
-      <td>2026-W17-stage2</td>
-      <td><a href="agent_06/2026-W17-stage2.html">レポートを見る →</a></td>
-    </tr>
-    <tr onclick="location.href='agent_04/2026-W17.html'" style="cursor:pointer">
-      <td><span class="badge" style="background:#9b59b6">🧠 Agent 04</span></td>
-      <td>Deep Research</td>
-      <td>2026-W17</td>
-      <td><a href="agent_04/2026-W17.html">レポートを見る →</a></td>
-    </tr>
-    <tr onclick="location.href='agent_05/2026-W17.html'" style="cursor:pointer">
-      <td><span class="badge" style="background:#e8540a">✍️ Agent 05</span></td>
-      <td>Copywriter</td>
-      <td>2026-W17</td>
-      <td><a href="agent_05/2026-W17.html">レポートを見る →</a></td>
-    </tr>
-    <tr onclick="location.href='agent_06/2026-W17.html'" style="cursor:pointer">
-      <td><span class="badge" style="background:#16a085">⚡ Agent 06</span></td>
-      <td>Content Factory</td>
-      <td>2026-W17</td>
-      <td><a href="agent_06/2026-W17.html">レポートを見る →</a></td>
-    </tr>
-    <tr onclick="location.href='agent_07/2026-W17.html'" style="cursor:pointer">
-      <td><span class="badge" style="background:#c0392b">🎯 Agent 07</span></td>
-      <td>Quality Reviewer</td>
-      <td>2026-W17</td>
-      <td><a href="agent_07/2026-W17.html">レポートを見る →</a></td>
-    </tr>
-    <tr onclick="location.href='agent_01/2026-W16-test.html'" style="cursor:pointer">
-      <td><span class="badge" style="background:#7c8cf8">🔍 Agent 01</span></td>
-      <td>UX Detective</td>
-      <td>2026-W16-test</td>
-      <td><a href="agent_01/2026-W16-test.html">レポートを見る →</a></td>
-    </tr></tbody>
-  </table>
+
+<!-- STATS -->
+<div class="stats-bar" id="statsBar">
+  <div class="stat-card unread"><div class="stat-num" id="statUnread">—</div><div class="stat-label">未読</div></div>
+  <div class="stat-card"><div class="stat-num" id="statWeek">—</div><div class="stat-label">今週の新着</div></div>
+  <div class="stat-card"><div class="stat-num" id="statTotal">—</div><div class="stat-label">全レポート</div></div>
+  <div class="stat-card"><div class="stat-num" id="statResearch">—</div><div class="stat-label">リサーチ件数</div></div>
 </div>
-<div class="footer">AKARI / <a href="https://github.com/ksk0527/akari-app">ksk0527/akari-app</a></div>
+
+<!-- THEME BAR (rotation progress) -->
+<div class="theme-bar" id="themeBar" style="display:none">
+  <span class="theme-label">今週のテーマ</span>
+  <span class="theme-pill agent04" id="weekThemeLabel">—</span>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="レポートを検索..." autocomplete="off">
+  </div>
+  <div class="filter-group" id="agentFilters">
+    <button class="filter-btn active" data-filter="agent" data-val="all">全エージェント</button>
+    <button class="filter-btn" data-filter="agent" data-val="01">01 UX</button>
+    <button class="filter-btn" data-filter="agent" data-val="02">02 Char</button>
+    <button class="filter-btn" data-filter="agent" data-val="03">03 Audit</button>
+    <button class="filter-btn" data-filter="agent" data-val="04">04 Research</button>
+    <button class="filter-btn" data-filter="agent" data-val="05">05 Copy</button>
+    <button class="filter-btn" data-filter="agent" data-val="06">06 Content</button>
+    <button class="filter-btn" data-filter="agent" data-val="07">07 Review</button>
+  </div>
+  <div class="filter-group">
+    <button class="filter-btn active" data-filter="read" data-val="all">すべて</button>
+    <button class="filter-btn" data-filter="read" data-val="unread">未読のみ</button>
+    <button class="filter-btn" data-filter="read" data-val="read">既読のみ</button>
+  </div>
+  <select class="filter-select" id="periodSelect">
+    <option value="all">全期間</option>
+    <option value="week">今週</option>
+    <option value="month">今月</option>
+    <option value="month3">過去3ヶ月</option>
+  </select>
+</div>
+
+<!-- REPORT LIST -->
+<div class="report-list" id="reportList"></div>
+
+<!-- FOOTER -->
+<div class="footer">
+  AKARI / スリーライツ株式会社（設立準備中）&nbsp;|&nbsp;
+  <a href="https://github.com/ksk0527/akari-reports" target="_blank">ksk0527/akari-reports</a>
+</div>
+
+<script>
+// ━━━ データ ━━━
+const REPORTS = [{"agentNum":"01","weekLabel":"2026-W16-test","agentName":"UX Detective","role":"継続率設計の解剖","emoji":"🔍","color":"#7c8cf8","topic":"2026-W16-test","summary":"UX Detective — 2026-W16-test","date":"2026-04-24T21:44:58.384Z","url":"agent_01/2026-W16-test.html"},{"agentNum":"04","weekLabel":"2026-W17","agentName":"Deep Research","role":"深層リサーチ","emoji":"🧠","color":"#9b59b6","topic":"2026-W17","summary":"Deep Research — 2026-W17","date":"2026-04-24T21:44:58.384Z","url":"agent_04/2026-W17.html"},{"agentNum":"05","weekLabel":"2026-W17","agentName":"Copywriter","role":"コピーライティング設計","emoji":"✍️","color":"#e8540a","topic":"2026-W17","summary":"Copywriter — 2026-W17","date":"2026-04-24T21:44:58.384Z","url":"agent_05/2026-W17.html"},{"agentNum":"06","weekLabel":"2026-W17-stage2","agentName":"Content Factory","role":"コンテンツ生成","emoji":"⚡","color":"#16a085","topic":"2026-W17-stage2","summary":"Content Factory — 2026-W17-stage2","date":"2026-04-24T21:44:58.384Z","url":"agent_06/2026-W17-stage2.html"},{"agentNum":"06","weekLabel":"2026-W17","agentName":"Content Factory","role":"コンテンツ生成","emoji":"⚡","color":"#16a085","topic":"2026-W17","summary":"Content Factory — 2026-W17","date":"2026-04-24T21:44:58.384Z","url":"agent_06/2026-W17.html"},{"agentNum":"07","weekLabel":"2026-W17","agentName":"Quality Reviewer","role":"品質評価","emoji":"🎯","color":"#c0392b","topic":"2026-W17","summary":"Quality Reviewer — 2026-W17","date":"2026-04-24T21:44:58.384Z","url":"agent_07/2026-W17.html"}];
+
+const AGENT_COLORS = {
+  '01':'#7c8cf8','02':'#c88a20','03':'#2a9e70','04':'#9b59b6',
+  '05':'#e8540a','06':'#16a085','07':'#c0392b'
+};
+const AGENT_ROLES = {
+  '01':'UX Detective','02':'Character Architect','03':'Divination Auditor',
+  '04':'Deep Research','05':'Copywriter','06':'Content Factory','07':'Quality Reviewer'
+};
+
+// ━━━ 既読管理（localStorage） ━━━
+const READ_KEY = 'akari_read_reports';
+function getReadSet() {
+  try { return new Set(JSON.parse(localStorage.getItem(READ_KEY)||'[]')); }
+  catch { return new Set(); }
+}
+function saveReadSet(s) {
+  localStorage.setItem(READ_KEY, JSON.stringify([...s]));
+}
+function toggleRead(id) {
+  const s = getReadSet();
+  if (s.has(id)) s.delete(id); else s.add(id);
+  saveReadSet(s);
+  renderAll();
+}
+function markRead(id) {
+  const s = getReadSet();
+  s.add(id);
+  saveReadSet(s);
+  renderAll();
+}
+
+// ━━━ フィルター状態 ━━━
+const filters = { agent:'all', read:'all', period:'all', search:'' };
+
+function isThisWeek(dateStr) {
+  const d = new Date(dateStr), now = new Date();
+  const startOfWeek = new Date(now);
+  startOfWeek.setDate(now.getDate() - (now.getDay()||7) + 1);
+  startOfWeek.setHours(0,0,0,0);
+  return d >= startOfWeek;
+}
+function isThisMonth(dateStr) {
+  const d = new Date(dateStr), now = new Date();
+  return d.getFullYear()===now.getFullYear() && d.getMonth()===now.getMonth();
+}
+function isWithin3Months(dateStr) {
+  const d = new Date(dateStr), now = new Date();
+  const m3 = new Date(now); m3.setMonth(now.getMonth()-3);
+  return d >= m3;
+}
+function isWithin24h(dateStr) {
+  return (Date.now() - new Date(dateStr).getTime()) < 86400000;
+}
+function isWithin7d(dateStr) {
+  return (Date.now() - new Date(dateStr).getTime()) < 7*86400000;
+}
+
+// ━━━ 統計計算 ━━━
+function calcStats() {
+  const readSet = getReadSet();
+  const total   = REPORTS.length;
+  const unread  = REPORTS.filter(r => !readSet.has(r.agentNum+'-'+r.weekLabel)).length;
+  const thisWk  = REPORTS.filter(r => isThisWeek(r.date)).length;
+  const research= REPORTS.filter(r => r.agentNum==='04').length;
+  document.getElementById('statUnread').textContent  = unread;
+  document.getElementById('statWeek').textContent    = thisWk;
+  document.getElementById('statTotal').textContent   = total;
+  document.getElementById('statResearch').textContent= research;
+}
+
+// ━━━ テーマバー ━━━
+function updateThemeBar() {
+  // 現在週のAgent 04レポートのトピックを表示
+  const thisWkReports = REPORTS.filter(r => r.agentNum==='04' && isThisWeek(r.date));
+  if (thisWkReports.length === 0) { document.getElementById('themeBar').style.display='none'; return; }
+  document.getElementById('themeBar').style.display='flex';
+  const topics = [...new Set(thisWkReports.map(r=>r.topic||r.weekLabel))];
+  document.getElementById('weekThemeLabel').textContent = topics.slice(0,3).join(' / ');
+}
+
+// ━━━ レポートカード生成 ━━━
+function makeCard(r, readSet) {
+  const id = r.agentNum+'-'+r.weekLabel;
+  const isRead = readSet.has(id);
+  const accentColor = AGENT_COLORS[r.agentNum] || '#c8a96e';
+  const dateObj = new Date(r.date);
+  const dateDisp = dateObj.toLocaleDateString('ja-JP',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+
+  const badgesHtml = [
+    isWithin24h(r.date) ? '<span class="badge-today">TODAY</span>' :
+    isWithin7d(r.date)  ? '<span class="badge-new">NEW</span>' : '',
+    '<span class="badge-agent" style="background:'+accentColor+'">Agent '+r.agentNum+'</span>',
+  ].filter(Boolean).join('');
+
+  const topic = r.topic || r.weekLabel;
+  const summary = r.summary ? r.summary.slice(0,120)+'…' : '';
+
+  return '<div class="report-card'+(isRead?' is-read':'')+'" style="--card-accent:'+accentColor+'" data-id="'+id+'" data-agent="'+r.agentNum+'" data-date="'+r.date+'" data-read="'+isRead+'">'
+    + '<div class="unread-dot" onclick="toggleRead(''+id+'')"></div>'
+    + '<div class="card-body">'
+    + '<div class="card-badges">'+badgesHtml+'</div>'
+    + '<div class="card-title">'+escHtml(topic)+'</div>'
+    + (summary ? '<div class="card-summary">'+escHtml(summary)+'</div>' : '')
+    + '<div class="card-meta">'
+    + '<span>'+dateDisp+'</span>'
+    + '<span class="card-role">'+(r.role||AGENT_ROLES[r.agentNum]||'')+'</span>'
+    + '<span>'+r.weekLabel+'</span>'
+    + '</div>'
+    + '</div>'
+    + '<div class="card-actions">'
+    + '<a class="btn-read" href="'+r.url+'" target="_blank" onclick="markRead(''+id+'')">読む →</a>'
+    + '<button class="btn-toggle" onclick="toggleRead(''+id+'')">'+(isRead?'未読に戻す':'既読にする')+'</button>'
+    + '</div>'
+    + '</div>';
+}
+
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// ━━━ フィルタリング＆レンダリング ━━━
+function renderAll() {
+  const readSet = getReadSet();
+  const q = filters.search.toLowerCase();
+
+  let list = REPORTS.filter(r => {
+    const id = r.agentNum+'-'+r.weekLabel;
+    // エージェントフィルター
+    if (filters.agent !== 'all' && r.agentNum !== filters.agent) return false;
+    // 既読フィルター
+    const isRead = readSet.has(id);
+    if (filters.read === 'unread' && isRead) return false;
+    if (filters.read === 'read' && !isRead) return false;
+    // 期間フィルター
+    if (filters.period === 'week' && !isThisWeek(r.date)) return false;
+    if (filters.period === 'month' && !isThisMonth(r.date)) return false;
+    if (filters.period === 'month3' && !isWithin3Months(r.date)) return false;
+    // 検索
+    if (q) {
+      const searchTarget = [(r.topic||''),(r.summary||''),(r.weekLabel||'')].join(' ').toLowerCase();
+      if (!searchTarget.includes(q)) return false;
+    }
+    return true;
+  });
+
+  const el = document.getElementById('reportList');
+  if (list.length === 0) {
+    el.innerHTML = '<div class="empty"><div class="empty-ico">🔍</div>条件に一致するレポートがありません</div>';
+  } else {
+    el.innerHTML = list.map(r => makeCard(r, readSet)).join('');
+  }
+
+  calcStats();
+  updateThemeBar();
+}
+
+// ━━━ イベントリスナー ━━━
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const type = btn.dataset.filter;
+    const val  = btn.dataset.val;
+    filters[type] = val;
+    // 同グループのactiveを外す
+    document.querySelectorAll('[data-filter="'+type+'"]').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    renderAll();
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  filters.search = e.target.value;
+  renderAll();
+});
+
+document.getElementById('periodSelect').addEventListener('change', e => {
+  filters.period = e.target.value;
+  renderAll();
+});
+
+// ━━━ 初期化 ━━━
+renderAll();
+</script>
 </body>
 </html>

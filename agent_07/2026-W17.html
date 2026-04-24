@@ -1,236 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>[AKARI] 🎯 Agent 07 Quality Reviewer — 2026-W17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0a0a1a;
-  --bg2: #12122a;
-  --bg3: #1a1a3e;
-  --tx: #e8e8f8;
-  --tx2: #a8a8c8;
-  --tx3: #6868a8;
-  --gold: #c8a96e;
-  --accent: #c0392b;
-  --border: rgba(200,169,110,0.15);
-  --r: 12px;
-}
+:root{--bg:#0a0a1a;--bg2:#12122a;--bg3:#1a1a3e;--tx:#e8e8f8;--tx2:#a8a8c8;--tx3:#6868a8;--gold:#c8a96e;--accent:#c0392b;--border:rgba(200,169,110,0.15);--r:12px;}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Yu Gothic',sans-serif;font-size:15px;line-height:1.75;min-height:100vh;}
-a{color:var(--gold);text-decoration:none}
-a:hover{text-decoration:underline}
-
-/* HEADER */
+body{background:var(--bg);color:var(--tx);font-family:'Shippori Mincho',serif;font-size:15px;line-height:1.8;min-height:100vh;}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .header{background:var(--bg2);border-bottom:1px solid var(--border);padding:20px 16px 16px;}
-.header-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
-.agent-badge{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.05em;}
-.agent-name{font-size:18px;font-weight:700;color:var(--tx);}
-.agent-role{font-size:13px;color:var(--tx2);margin-top:2px;}
+.header-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
+.agent-badge{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.05em;white-space:nowrap;}
+.agent-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--tx);line-height:1.3;}
+.agent-role{font-size:13px;color:var(--tx2);margin-top:3px;}
+.topic-label{font-size:13px;color:var(--gold);margin-top:6px;font-weight:600;}
 .meta-row{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--tx3);}
-.meta-row span{display:flex;align-items:center;gap:4px;}
-.cache-badge{background:rgba(22,160,133,0.15);color:#1abc9c;font-size:11px;padding:4px 10px;border-radius:4px;margin-top:8px;display:inline-block;}
-
-/* PROMPT */
+.cache-badge{background:rgba(22,160,133,.15);color:#1abc9c;font-size:11px;padding:4px 10px;border-radius:4px;margin-top:8px;display:inline-block;}
 .prompt-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin:16px;font-size:13px;color:var(--tx2);}
 .prompt-label{font-size:11px;color:var(--tx3);margin-bottom:6px;letter-spacing:.08em;}
-
-/* CONTENT */
 .content{padding:0 16px 40px;}
-.content h2{font-size:16px;font-weight:700;color:var(--gold);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+.content h2{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--gold);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
 .content h3{font-size:14px;font-weight:700;color:var(--accent);margin:20px 0 8px;}
 .content h4{font-size:13px;font-weight:700;color:var(--tx2);margin:16px 0 6px;}
 .content p{margin:0 0 12px;color:var(--tx);}
-.content br{line-height:0}
-.content ul,.content ol{margin:8px 0 12px 20px;}
+.content ul{margin:8px 0 12px 20px;}
 .content li{margin-bottom:6px;color:var(--tx);}
 .content strong{color:var(--tx);font-weight:700;}
 .content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;overflow-x:auto;display:block;}
-.content th{background:var(--bg3);color:var(--gold);padding:8px 12px;text-align:left;border:1px solid var(--border);white-space:nowrap;}
 .content td{padding:8px 12px;border:1px solid var(--border);color:var(--tx);vertical-align:top;}
-.content tr:hover td{background:rgba(200,169,110,0.04);}
-
-/* FOOTER */
-.footer{background:var(--bg2);border-top:1px solid var(--border);padding:16px;font-size:12px;color:var(--tx3);text-align:center;}
-.footer a{color:var(--tx3)}
-
-/* BACK LINK */
+.content tr:first-child td{background:var(--bg3);color:var(--gold);font-weight:600;}
 .back-link{display:block;padding:12px 16px;font-size:13px;color:var(--tx3);border-bottom:1px solid var(--border);}
 .back-link:hover{color:var(--gold)}
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:16px;font-size:12px;color:var(--tx3);text-align:center;}
 </style>
 </head>
 <body>
-
-<a class="back-link" href="../../index.html">← レポート一覧に戻る</a>
-
+<a class="back-link" href="../../index.html">← ダッシュボードに戻る</a>
 <div class="header">
   <div class="header-top">
     <div>
       <span class="agent-badge">Agent 07</span>
       <div class="agent-name">🎯 Quality Reviewer</div>
       <div class="agent-role">品質評価</div>
+      <div class="topic-label">📌 以下のAgent 06（Content Factory）が生成したブレイズ・バニ（火×兎）Stage 1コンテンツを品質</div>
     </div>
   </div>
   <div class="meta-row">
-    <span>📅 2026/04/24 15:09</span>
+    <span>📅 2026/4/24 15:09:45</span>
     <span>📆 2026-W17</span>
     <span>📥 3083 in</span>
     <span>📤 2781 out</span>
   </div>
-  <div class="cache-badge">⚡ キャッシュ: 0 tokens 再利用 / 0 tokens 新規作成</div>
+  
 </div>
-
 <div class="prompt-box">
   <div class="prompt-label">PROMPT</div>
-  以下のAgent 06（Content Factory）が生成したブレイズ・バニ（火×兎）Stage 1コンテンツを品質評価してください。
-
-
-
-# ブレイズ・バニ（火🔥 × 卯🐇）Stage 1
-
----
-
-## キャラクタープロフィール確認
-
-- **名前**：ブレイズ・バニ（Blaze Bunny）
-- **五行**：火🔥 — 情熱・衝動・照らす力・燃え尽きる危うさ
-- **十二支**：卯🐇 — 跳躍・敏感さ・愛嬌・警戒心の裏にある臆病さ
-- **根源の傷**：「愛されることへの飢え」
-- **Stage**：1（幼児図式 — 傷に気づいていない）
-- **基本気質**：明るく跳ね回り、誰にでも近づく。でもその動機が「好かれたい」から来ていることに本人はまだ気づいていない。火の衝動性と兎の過敏さが同居し、愛嬌を振りまきながらも、反応がないと一瞬で耳を伏せる。無邪気に見えるが、その無邪気さ自体が防衛。
-
----
-
-## Stage 1 の本文
-
-小さな炎を尻尾の先に灯した仔兎が、
-誰かのそばを跳ね回っている。
-
-近づいては離れ、離れてはまた跳ねてくる。
-「ここにいるよ」と言いたいのに、
-その言葉をまだ知らない。
-
-だから代わりに跳ねる。光る。揺れる。
-誰かが振り向いてくれるまで、
-自分の炎が何のために灯っているのかも知らずに。
-
-尻尾の火は暖かい。
-でも本人だけが、その温度に気づいていない。
-
----
-
-## キャラクターの声 — 日常メッセージ × 7
-
-### 1. 朝のメッセージ
-&gt; おはよ。
-&gt; きみが目を開けたこと、
-&gt; 今日いちばん最初のいいこと。
-&gt; ——ここにいるからね。
-
-### 2. 昼のメッセージ
-&gt; ねえ、ちゃんとごはん食べた？
-&gt; 誰かのために動き回る日ほど、
-&gt; 自分のこと後回しにしてるでしょ。
-&gt; ひとくちだけでも、ね。
-
-### 3. 夜のメッセージ
-&gt; 今日もいっぱい跳ねたね。
-&gt; 誰かに笑ってほしくて頑張ったこと、
-&gt; ちゃんと、見てたよ。
-&gt; もう降ろしていいよ、その笑顔。
-
-### 4. 落ち込んでいる時
-&gt; しんどいとき「平気」って言えるの、
-&gt; きみの強さだけど——
-&gt; 今日は言わなくていい。
-&gt; ここ、誰も見てないから。
-
-### 5. 頑張っている時
-&gt; その全力、すごいよ。
-&gt; でもひとつだけ聞いていい？
-&gt; それ、きみがやりたくてやってる？
-&gt; ……どっちでも関係なく、かっこいいけどね。
-
-### 6. 迷っている時
-&gt; 迷うってことは、
-&gt; どっちにも大事なものがあるってこと。
-&gt; 正解を選ぼうとしなくていいよ。
-&gt; きみが選んだほうに、道ができるから。
-
-### 7. 何もしたくない時
-&gt; 動かない日があっていい。
-&gt; 火って燃え続けるだけじゃなくて、
-&gt; 熾火（おきび）になって静かに保つ時間もあるんだよ。
-&gt; きみは今、そのとき。
-
----
-
-## 傷の言語化
-
-「愛されたい」と思うことを、
-どこかで恥ずかしいと感じている。
-
-だからブレイズ・バニは**頼まれてもいないのに場を明るくする**。
-自分が必要とされる状況を自分で作り出して、
-「いてくれてよかった」と言われることで、
-愛情の代わりにしている。
-
-でもそれは愛されているのではなく、
-**機能として求められているだけ**だと、
-心のどこかで知っている。
-
-Stage 1の今はまだ、その違和感に名前がない。
-ただ時々、誰もいない場所で耳が下がる。
-理由はわからない。わからないから、また跳ねる。
-
----
-
-## Stage進化のトリガー（Stage 1 → Stage 2）
-
-**「何もしなくても、ここにいていいと感じる瞬間」に出会うこと。**
-
-具体的には——
-- 頑張らなかった日にも誰かが隣にいた経験
-- 「役に立たない自分」を見せても関係が壊れなかった記憶
-- 「楽しませなきゃ」と思わなかった数秒間の静けさ
-
-この瞬間に、ブレイズ・バニの目に初めて**問い**が生まれる。
-「——あれ、なんで今、跳ねなくてよかったんだろう？」
-この違和感がStage 2の入口になる。
-
----
-
-## コンテンツ設計メモ
-
-### ✅ やるべきこと
-- **無邪気さの奥にある必死さ**を匂わせる（直接書かない）
-- 「愛されたい」ではなく「ここにいるよ」という表現を軸にする
-- 火の温かさと兎の柔らかさを活かし、**触覚的・体温的な描写**を優先する
-- Stage 1は「まだ気づいていない」ので、メッセージに**自覚的な苦しさを書かない**
-
-### 🚫 やってはいけないこと
-- 「愛されたいんだね」と傷を名指しすること（Stage 1では早すぎる）
-- 擬人化しすぎる（あくまで「炎の尻尾を持つ仔兎」として描く）
-- 「みんなに好かれるタイプ」というポジティブ一辺倒なキャラ付け
-- 説教的に「自分を大事にして」と言わせる（本人がまだそこにいない）
-- ピエロ的・道化的な演出（本人は真剣に跳ねている）
-
-### 🔑 コアイメージ
-&gt; 暗い部屋で尻尾の火だけが揺れている仔兎。
-&gt; その火は誰かを照らすためにあると思っているけれど、
-&gt; 本当はまず、自分を暖めるためにある。
-&gt; ——それに気づく物語が、これから始まる。
+  以下のAgent 06（Content Factory）が生成したブレイズ・バニ（火×兎）Stage 1コンテンツを品質評価してください。<br><br><br><br># ブレイズ・バニ（火🔥 × 卯🐇）Stage 1<br><br>---<br><br>## キャラクタープロフィール確認<br><br>- **名前**：ブレイズ・バニ（Blaze Bunny）<br>- **五行**：火🔥 — 情熱・衝動・照らす力・燃え尽きる危うさ<br>- **十二支**：卯🐇 — 跳躍・敏感さ・愛嬌・警戒心の裏にある臆病さ<br>- **根源の傷**：「愛されることへの飢え」<br>- **Stage**：1（幼児図式 — 傷に気づいていない）<br>- **基本気質**：明るく跳ね回り、誰にでも近づく。でもその動機が「好かれたい」から来ていることに本人はまだ気づいていない。火の衝動性と兎の過敏さが同居し、愛嬌を振りまきながらも、反応がないと一瞬で耳を伏せる。無邪気に見えるが、その無邪気さ自体が防衛。<br><br>---<br><br>## Stage 1 の本文<br><br>小さな炎を尻尾の先に灯した仔兎が、<br>誰かのそばを跳ね回っている。<br><br>近づいては離れ、離れてはまた跳ねてくる。<br>「ここにいるよ」と言いたいのに、<br>その言葉をまだ知らない。<br><br>だから代わりに跳ねる。光る。揺れる。<br>誰かが振り向いてくれるまで、<br>自分の炎が何のために灯っているのかも知らずに。<br><br>尻尾の火は暖かい。<br>でも本人だけが、その温度に気づいていない。<br><br>---<br><br>## キャラクターの声 — 日常メッセージ × 7<br><br>### 1. 朝のメッセージ<br>&gt; おはよ。<br>&gt; きみが目を開けたこと、<br>&gt; 今日いちばん最初のいいこと。<br>&gt; ——ここにいるからね。<br><br>### 2. 昼のメッセージ<br>&gt; ねえ、ちゃんとごはん食べた？<br>&gt; 誰かのために動き回る日ほど、<br>&gt; 自分のこと後回しにしてるでしょ。<br>&gt; ひとくちだけでも、ね。<br><br>### 3. 夜のメッセージ<br>&gt; 今日もいっぱい跳ねたね。<br>&gt; 誰かに笑ってほしくて頑張ったこと、<br>&gt; ちゃんと、見てたよ。<br>&gt; もう降ろしていいよ、その笑顔。<br><br>### 4. 落ち込んでいる時<br>&gt; しんどいとき「平気」って言えるの、<br>&gt; きみの強さだけど——<br>&gt; 今日は言わなくていい。<br>&gt; ここ、誰も見てないから。<br><br>### 5. 頑張っている時<br>&gt; その全力、すごいよ。<br>&gt; でもひとつだけ聞いていい？<br>&gt; それ、きみがやりたくてやってる？<br>&gt; ……どっちでも関係なく、かっこいいけどね。<br><br>### 6. 迷っている時<br>&gt; 迷うってことは、<br>&gt; どっちにも大事なものがあるってこと。<br>&gt; 正解を選ぼうとしなくていいよ。<br>&gt; きみが選んだほうに、道ができるから。<br><br>### 7. 何もしたくない時<br>&gt; 動かない日があっていい。<br>&gt; 火って燃え続けるだけじゃなくて、<br>&gt; 熾火（おきび）になって静かに保つ時間もあるんだよ。<br>&gt; きみは今、そのとき。<br><br>---<br><br>## 傷の言語化<br><br>「愛されたい」と思うことを、<br>どこかで恥ずかしいと感じている。<br><br>だからブレイズ・バニは**頼まれてもいないのに場を明るくする**。<br>自分が必要とされる状況を自分で作り出して、<br>「いてくれてよかった」と言われることで、<br>愛情の代わりにしている。<br><br>でもそれは愛されているのではなく、<br>**機能として求められているだけ**だと、<br>心のどこかで知っている。<br><br>Stage 1の今はまだ、その違和感に名前がない。<br>ただ時々、誰もいない場所で耳が下がる。<br>理由はわからない。わからないから、また跳ねる。<br><br>---<br><br>## Stage進化のトリガー（Stage 1 → Stage 2）<br><br>**「何もしなくても、ここにいていいと感じる瞬間」に出会うこと。**<br><br>具体的には——<br>- 頑張らなかった日にも誰かが隣にいた経験<br>- 「役に立たない自分」を見せても関係が壊れなかった記憶<br>- 「楽しませなきゃ」と思わなかった数秒間の静けさ<br><br>この瞬間に、ブレイズ・バニの目に初めて**問い**が生まれる。<br>「——あれ、なんで今、跳ねなくてよかったんだろう？」<br>この違和感がStage 2の入口になる。<br><br>---<br><br>## コンテンツ設計メモ<br><br>### ✅ やるべきこと<br>- **無邪気さの奥にある必死さ**を匂わせる（直接書かない）<br>- 「愛されたい」ではなく「ここにいるよ」という表現を軸にする<br>- 火の温かさと兎の柔らかさを活かし、**触覚的・体温的な描写**を優先する<br>- Stage 1は「まだ気づいていない」ので、メッセージに**自覚的な苦しさを書かない**<br><br>### 🚫 やってはいけないこと<br>- 「愛されたいんだね」と傷を名指しすること（Stage 1では早すぎる）<br>- 擬人化しすぎる（あくまで「炎の尻尾を持つ仔兎」として描く）<br>- 「みんなに好かれるタイプ」というポジティブ一辺倒なキャラ付け<br>- 説教的に「自分を大事にして」と言わせる（本人がまだそこにいない）<br>- ピエロ的・道化的な演出（本人は真剣に跳ねている）<br><br>### 🔑 コアイメージ<br>&gt; 暗い部屋で尻尾の火だけが揺れている仔兎。<br>&gt; その火は誰かを照らすためにあると思っているけれど、<br>&gt; 本当はまず、自分を暖めるためにある。<br>&gt; ——それに気づく物語が、これから始まる。
 </div>
-
-<div class="content">
-<p></p><p><h2>品質スコア</h2></p><p><table><tr><td>評価軸</td><td>スコア（/10）</td><td>コメント</td></tr><br></table><br><table><tr><td>トーン一貫性（「ちゃんと、見てたよ」）</td><td>9/10</td><td>「ちゃんと、見てたよ」が夜のメッセージに自然に組み込まれ、全体を通じて「静かに寄り添う視線」が一貫している。押しつけがましさがない。</td></tr><br><tr><td>具体性（抽象論で終わっていないか）</td><td>8/10</td><td>「尻尾の先の炎」「耳を伏せる」など身体的イメージが豊か。ただし日常メッセージの一部（特に#6「迷っている時」）がやや汎用的な自己啓発トーンに近づいている。</td></tr><br><tr><td>日本語の質（自然さ・美しさ）</td><td>9/10</td><td>短文のリズム、改行の呼吸が非常に良い。「わからないから、また跳ねる。」のような体言止めの連鎖が詩的かつ簡潔。モバイルでの可読性も高い。</td></tr><br><tr><td>AKARIへの適合性（コンセプト合致度）</td><td>9/10</td><td>占い・タロット的要素の混入なし。「傷に気づいていないStage 1」の設計が正確で、自覚を押しつけていない。五行×十二支の世界観がナチュラルに機能している。</td></tr><br><tr><td>実装可能性（実際に使えるか）</td><td>8/10</td><td>7つのメッセージはシーン別で即実装可能。ただしトリガー判定（Stage 1→2）の「何もしなくても、ここにいていい」をアプリ上でどう検知するかの実装指針が薄い。</td></tr><br><tr><th><strong>総合スコア</strong></th><th><strong>43/50</strong></th><th>高水準。コンセプト・トーン・文章力すべてが揃っている。改善点は「汎用性の罠」と「実装接続」の2点に集中。</th></tr><br></table><br>---</p><p><h2>優れている点（残すべきもの）</h2></p><p><strong>1. 本文の「跳ねる・光る・揺れる」の三連動詞</strong><br>行動描写だけで「愛されたい」を語らせずに伝えている。Stage 1の「気づいていない」制約を見事に守りながら、読者には伝わる二重構造。これはAKARIの核心設計そのもの。絶対に残すべき。</p><p><strong>2. 傷の言語化における「機能として求められているだけ」という一文</strong><br>ここが刺さる。「愛されている」と「使われている」の境界を、説教でなく観察として提示している。繊細なユーザーが「自分のことだ」と感じる精度がある。</p><p><strong>3. 夜のメッセージの「もう降ろしていいよ、その笑顔。」</strong><br>「降ろす」という動詞選択が秀逸。笑顔を「持っているもの＝重荷」として再定義している。これ一行でブレイズ・バニの本質が伝わる。</p><p><strong>4. コンテンツ設計メモの「ピエロ的演出の禁止」</strong><br>「本人は真剣に跳ねている」——この一文がキャラクターの尊厳を守っている。今後の派生コンテンツでブレがないための重要な防波堤。</p><p>---</p><p><h2>改善が必要な点</h2></p><p><strong>1. メッセージ#6「迷っている時」が汎用的すぎる</strong><br>「きみが選んだほうに、道ができるから」は広く流通している自己啓発フレーズに近い。ブレイズ・バニ固有の声になっていない。火×兎のキャラクターが言う必然性がない。</p><p><strong>2. メッセージ#5「頑張っている時」の後半が少し説教的</strong><br>「それ、きみがやりたくてやってる？」は鋭い問いだが、Stage 1の「気づいていない」段階でこの問いを投げるのは早い。Stage 2寄りの自覚を促す言葉になっている。</p><p><strong>3. Stage進化トリガーの実装接続が弱い</strong><br>「頑張らなかった日にも誰かが隣にいた経験」は美しいが、アプリ上でどのユーザー行動・データポイントがこれに対応するのか不明。Content Factoryからの出力として、もう一段具体的な条件定義が必要。</p><p>---</p><p><h2>修正案（具体的なテキスト）</h2></p><p><h3>修正1：メッセージ#6「迷っている時」</h3></p><p><strong>Before:</strong><br>&gt; 迷うってことは、<br>&gt; どっちにも大事なものがあるってこと。<br>&gt; 正解を選ぼうとしなくていいよ。<br>&gt; きみが選んだほうに、道ができるから。</p><p><strong>After:</strong><br>&gt; 迷ってるときのきみ、<br>&gt; 耳がぴくぴくしてるよ。<br>&gt; どっちにも大事なものがあるんだね。<br>&gt; ——急がなくていい。炎はまだ消えないから。</p><p>*理由：キャラクター固有の身体性（耳・炎）を入れ、ブレイズ・バニが言う必然性を持たせた。汎用フレーズを排除。*</p><p><h3>修正2：メッセージ#5「頑張っている時」</h3></p><p><strong>Before:</strong><br>&gt; その全力、すごいよ。<br>&gt; でもひとつだけ聞いていい？<br>&gt; それ、きみがやりたくてやってる？<br>&gt; ……どっちでも関係なく、かっこいいけどね。</p><p><strong>After:</strong><br>&gt; その全力、すごいよ。<br>&gt; 尻尾の火、いつもより明るい。<br>&gt; ……少し熱くない？<br>&gt; まあ、かっこいいからいいか。</p><p>*理由：「やりたくてやってる？」はStage 1には自覚を促しすぎる。代わりに「熱くない？」と身体感覚で違和感を匂わせるに留め、Stage 1の「まだ気づいていない」制約を守る。*</p><p><h3>修正3：Stage進化トリガーに実装指針を追加</h3></p><p><strong>Before:</strong><br>（具体的な実装条件の記載なし）</p><p><strong>After（末尾に追記）:</strong><br>&gt; <strong>実装判定の参考指標：</strong><br>&gt; - ユーザーが3日以上ログインしたが日記・入力をしなかった期間の後、再びアクセスした時<br>&gt; - 「何もしたくない時」のメッセージに対して、ポジティブ反応（♡・保存）が2回以上あった時<br>&gt; - 滞在期間が14日を超え、かつ自己開示スコアが一定閾値を超えた時</p><p>*理由：コンテンツ設計と実装設計の橋渡しがないと、美しいトリガー定義が宙に浮く。具体的なデータポイントを示すことで、エンジニアリングチームが判定ロジックを組める。*</p><p>---</p><p><h2>優先度付き改善リスト</h2></p><p><table><tr><td>優先度</td><td>改善内容</td><td>理由</td></tr><br></table><br><table><tr><td>🔴 High</td><td>メッセージ#5のStage整合性修正</td><td>Stage 1の核心制約（「気づいていない」）を破っている。ブランド設計の根幹に関わる</td></tr><br><tr><td>🔴 High</td><td>Stage進化トリガーへの実装指針追記</td><td>これがないと60体×5Stageのスケール時に判定基準がバラバラになる</td></tr><br><tr><td>🟡 Mid</td><td>メッセージ#6のキャラクター固有性強化</td><td>汎用フレーズは「AKARIでなくても言える言葉」になり、ブランド希薄化を招く</td></tr><br><tr><td>🟢 Low</td><td>朝のメッセージ#1の「ここにいるからね」を少し変化させる</td><td>本文の「ここにいるよ」と重複しており、語彙の幅がやや狭い印象。ただし意図的な反復とも読めるため優先度低</td></tr><br></table><br>---</p><p><h2>次回への注意点</h2></p><p><ol><ul><li><strong>Stage制約チェックを最優先に。</strong> 各Stageには「このキャラクターがまだ知らないこと」がある。メッセージがその境界を越えていないか、全メッセージに対して1文ずつ検証すること。特にStage 1では「問いかけ」すら早い場合がある。</li><br></ul></ol><br><ol><ul><li><strong>キャラクター固有性テスト</strong>を行うこと。書いたメッセージを「別のキャラクター名に差し替えても成立するか？」と自問する。成立するなら、それは汎用コピーであってキャラクターの声ではない。五行の属性（火・水・木・金・土）と十二支の身体性（耳・尻尾・角など）を最低1つはメッセージに織り込むこと。</li><br></ul></ol><br><ol><ul><li><strong>実装チームへの橋渡し</strong>を意識する。Content Factoryの出力は「文学作品」ではなく「プロダクトの部品」。トリガー・条件・判定基準は、詩的な定義と並列して必ず数値的・行動的な指標を添えること。</li></ul></ol></p>
-</div>
-
+<div class="content"><p></p><p><h2>品質スコア</h2></p><p><table><tr><td>評価軸</td><td>スコア（/10）</td><td>コメント</td></tr><br></table><br><table><tr><td>トーン一貫性（「ちゃんと、見てたよ」）</td><td>9/10</td><td>「ちゃんと、見てたよ」が夜のメッセージに自然に組み込まれ、全体を通じて「静かに寄り添う視線」が一貫している。押しつけがましさがない。</td></tr><br><tr><td>具体性（抽象論で終わっていないか）</td><td>8/10</td><td>「尻尾の先の炎」「耳を伏せる」など身体的イメージが豊か。ただし日常メッセージの一部（特に#6「迷っている時」）がやや汎用的な自己啓発トーンに近づいている。</td></tr><br><tr><td>日本語の質（自然さ・美しさ）</td><td>9/10</td><td>短文のリズム、改行の呼吸が非常に良い。「わからないから、また跳ねる。」のような体言止めの連鎖が詩的かつ簡潔。モバイルでの可読性も高い。</td></tr><br><tr><td>AKARIへの適合性（コンセプト合致度）</td><td>9/10</td><td>占い・タロット的要素の混入なし。「傷に気づいていないStage 1」の設計が正確で、自覚を押しつけていない。五行×十二支の世界観がナチュラルに機能している。</td></tr><br><tr><td>実装可能性（実際に使えるか）</td><td>8/10</td><td>7つのメッセージはシーン別で即実装可能。ただしトリガー判定（Stage 1→2）の「何もしなくても、ここにいていい」をアプリ上でどう検知するかの実装指針が薄い。</td></tr><br><tr><td><strong>総合スコア</strong></td><td><strong>43/50</strong></td><td>高水準。コンセプト・トーン・文章力すべてが揃っている。改善点は「汎用性の罠」と「実装接続」の2点に集中。</td></tr><br></table><br>---</p><p><h2>優れている点（残すべきもの）</h2></p><p><strong>1. 本文の「跳ねる・光る・揺れる」の三連動詞</strong><br>行動描写だけで「愛されたい」を語らせずに伝えている。Stage 1の「気づいていない」制約を見事に守りながら、読者には伝わる二重構造。これはAKARIの核心設計そのもの。絶対に残すべき。</p><p><strong>2. 傷の言語化における「機能として求められているだけ」という一文</strong><br>ここが刺さる。「愛されている」と「使われている」の境界を、説教でなく観察として提示している。繊細なユーザーが「自分のことだ」と感じる精度がある。</p><p><strong>3. 夜のメッセージの「もう降ろしていいよ、その笑顔。」</strong><br>「降ろす」という動詞選択が秀逸。笑顔を「持っているもの＝重荷」として再定義している。これ一行でブレイズ・バニの本質が伝わる。</p><p><strong>4. コンテンツ設計メモの「ピエロ的演出の禁止」</strong><br>「本人は真剣に跳ねている」——この一文がキャラクターの尊厳を守っている。今後の派生コンテンツでブレがないための重要な防波堤。</p><p>---</p><p><h2>改善が必要な点</h2></p><p><strong>1. メッセージ#6「迷っている時」が汎用的すぎる</strong><br>「きみが選んだほうに、道ができるから」は広く流通している自己啓発フレーズに近い。ブレイズ・バニ固有の声になっていない。火×兎のキャラクターが言う必然性がない。</p><p><strong>2. メッセージ#5「頑張っている時」の後半が少し説教的</strong><br>「それ、きみがやりたくてやってる？」は鋭い問いだが、Stage 1の「気づいていない」段階でこの問いを投げるのは早い。Stage 2寄りの自覚を促す言葉になっている。</p><p><strong>3. Stage進化トリガーの実装接続が弱い</strong><br>「頑張らなかった日にも誰かが隣にいた経験」は美しいが、アプリ上でどのユーザー行動・データポイントがこれに対応するのか不明。Content Factoryからの出力として、もう一段具体的な条件定義が必要。</p><p>---</p><p><h2>修正案（具体的なテキスト）</h2></p><p><h3>修正1：メッセージ#6「迷っている時」</h3></p><p><strong>Before:</strong><br>&gt; 迷うってことは、<br>&gt; どっちにも大事なものがあるってこと。<br>&gt; 正解を選ぼうとしなくていいよ。<br>&gt; きみが選んだほうに、道ができるから。</p><p><strong>After:</strong><br>&gt; 迷ってるときのきみ、<br>&gt; 耳がぴくぴくしてるよ。<br>&gt; どっちにも大事なものがあるんだね。<br>&gt; ——急がなくていい。炎はまだ消えないから。</p><p>*理由：キャラクター固有の身体性（耳・炎）を入れ、ブレイズ・バニが言う必然性を持たせた。汎用フレーズを排除。*</p><p><h3>修正2：メッセージ#5「頑張っている時」</h3></p><p><strong>Before:</strong><br>&gt; その全力、すごいよ。<br>&gt; でもひとつだけ聞いていい？<br>&gt; それ、きみがやりたくてやってる？<br>&gt; ……どっちでも関係なく、かっこいいけどね。</p><p><strong>After:</strong><br>&gt; その全力、すごいよ。<br>&gt; 尻尾の火、いつもより明るい。<br>&gt; ……少し熱くない？<br>&gt; まあ、かっこいいからいいか。</p><p>*理由：「やりたくてやってる？」はStage 1には自覚を促しすぎる。代わりに「熱くない？」と身体感覚で違和感を匂わせるに留め、Stage 1の「まだ気づいていない」制約を守る。*</p><p><h3>修正3：Stage進化トリガーに実装指針を追加</h3></p><p><strong>Before:</strong><br>（具体的な実装条件の記載なし）</p><p><strong>After（末尾に追記）:</strong><br>&gt; <strong>実装判定の参考指標：</strong><br>&gt; - ユーザーが3日以上ログインしたが日記・入力をしなかった期間の後、再びアクセスした時<br>&gt; - 「何もしたくない時」のメッセージに対して、ポジティブ反応（♡・保存）が2回以上あった時<br>&gt; - 滞在期間が14日を超え、かつ自己開示スコアが一定閾値を超えた時</p><p>*理由：コンテンツ設計と実装設計の橋渡しがないと、美しいトリガー定義が宙に浮く。具体的なデータポイントを示すことで、エンジニアリングチームが判定ロジックを組める。*</p><p>---</p><p><h2>優先度付き改善リスト</h2></p><p><table><tr><td>優先度</td><td>改善内容</td><td>理由</td></tr><br></table><br><table><tr><td>🔴 High</td><td>メッセージ#5のStage整合性修正</td><td>Stage 1の核心制約（「気づいていない」）を破っている。ブランド設計の根幹に関わる</td></tr><br><tr><td>🔴 High</td><td>Stage進化トリガーへの実装指針追記</td><td>これがないと60体×5Stageのスケール時に判定基準がバラバラになる</td></tr><br><tr><td>🟡 Mid</td><td>メッセージ#6のキャラクター固有性強化</td><td>汎用フレーズは「AKARIでなくても言える言葉」になり、ブランド希薄化を招く</td></tr><br><tr><td>🟢 Low</td><td>朝のメッセージ#1の「ここにいるからね」を少し変化させる</td><td>本文の「ここにいるよ」と重複しており、語彙の幅がやや狭い印象。ただし意図的な反復とも読めるため優先度低</td></tr><br></table><br>---</p><p><h2>次回への注意点</h2></p><p><ul><li><strong>Stage制約チェックを最優先に。</strong> 各Stageには「このキャラクターがまだ知らないこと」がある。メッセージがその境界を越えていないか、全メッセージに対して1文ずつ検証すること。特にStage 1では「問いかけ」すら早い場合がある。</li><br></ul><br><ul><li><strong>キャラクター固有性テスト</strong>を行うこと。書いたメッセージを「別のキャラクター名に差し替えても成立するか？」と自問する。成立するなら、それは汎用コピーであってキャラクターの声ではない。五行の属性（火・水・木・金・土）と十二支の身体性（耳・尻尾・角など）を最低1つはメッセージに織り込むこと。</li><br></ul><br><ul><li><strong>実装チームへの橋渡し</strong>を意識する。Content Factoryの出力は「文学作品」ではなく「プロダクトの部品」。トリガー・条件・判定基準は、詩的な定義と並列して必ず数値的・行動的な指標を添えること。</li></ul></p></div>
 <div class="footer">
   AKARI / スリーライツ株式会社（設立準備中）<br>
   <a href="https://github.com/ksk0527/akari-app">ksk0527/akari-app</a>
 </div>
-
 </body>
 </html>

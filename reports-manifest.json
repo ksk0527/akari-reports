@@ -1,0 +1,74 @@
+[
+  {
+    "agentNum": "01",
+    "weekLabel": "2026-W16-test",
+    "agentName": "UX Detective",
+    "role": "継続率設計の解剖",
+    "emoji": "🔍",
+    "color": "#7c8cf8",
+    "topic": "2026-W16-test",
+    "summary": "UX Detective — 2026-W16-test",
+    "date": "2026-04-24T21:44:58.384Z",
+    "url": "agent_01/2026-W16-test.html"
+  },
+  {
+    "agentNum": "04",
+    "weekLabel": "2026-W17",
+    "agentName": "Deep Research",
+    "role": "深層リサーチ",
+    "emoji": "🧠",
+    "color": "#9b59b6",
+    "topic": "2026-W17",
+    "summary": "Deep Research — 2026-W17",
+    "date": "2026-04-24T21:44:58.384Z",
+    "url": "agent_04/2026-W17.html"
+  },
+  {
+    "agentNum": "05",
+    "weekLabel": "2026-W17",
+    "agentName": "Copywriter",
+    "role": "コピーライティング設計",
+    "emoji": "✍️",
+    "color": "#e8540a",
+    "topic": "2026-W17",
+    "summary": "Copywriter — 2026-W17",
+    "date": "2026-04-24T21:44:58.384Z",
+    "url": "agent_05/2026-W17.html"
+  },
+  {
+    "agentNum": "06",
+    "weekLabel": "2026-W17-stage2",
+    "agentName": "Content Factory",
+    "role": "コンテンツ生成",
+    "emoji": "⚡",
+    "color": "#16a085",
+    "topic": "2026-W17-stage2",
+    "summary": "Content Factory — 2026-W17-stage2",
+    "date": "2026-04-24T21:44:58.384Z",
+    "url": "agent_06/2026-W17-stage2.html"
+  },
+  {
+    "agentNum": "06",
+    "weekLabel": "2026-W17",
+    "agentName": "Content Factory",
+    "role": "コンテンツ生成",
+    "emoji": "⚡",
+    "color": "#16a085",
+    "topic": "2026-W17",
+    "summary": "Content Factory — 2026-W17",
+    "date": "2026-04-24T21:44:58.384Z",
+    "url": "agent_06/2026-W17.html"
+  },
+  {
+    "agentNum": "07",
+    "weekLabel": "2026-W17",
+    "agentName": "Quality Reviewer",
+    "role": "品質評価",
+    "emoji": "🎯",
+    "color": "#c0392b",
+    "topic": "2026-W17",
+    "summary": "Quality Reviewer — 2026-W17",
+    "date": "2026-04-24T21:44:58.384Z",
+    "url": "agent_07/2026-W17.html"
+  }
+]

@@ -1,99 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>[AKARI] ✍️ Agent 05 Copywriter — 2026-W17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0a0a1a;
-  --bg2: #12122a;
-  --bg3: #1a1a3e;
-  --tx: #e8e8f8;
-  --tx2: #a8a8c8;
-  --tx3: #6868a8;
-  --gold: #c8a96e;
-  --accent: #e8540a;
-  --border: rgba(200,169,110,0.15);
-  --r: 12px;
-}
+:root{--bg:#0a0a1a;--bg2:#12122a;--bg3:#1a1a3e;--tx:#e8e8f8;--tx2:#a8a8c8;--tx3:#6868a8;--gold:#c8a96e;--accent:#e8540a;--border:rgba(200,169,110,0.15);--r:12px;}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Yu Gothic',sans-serif;font-size:15px;line-height:1.75;min-height:100vh;}
-a{color:var(--gold);text-decoration:none}
-a:hover{text-decoration:underline}
-
-/* HEADER */
+body{background:var(--bg);color:var(--tx);font-family:'Shippori Mincho',serif;font-size:15px;line-height:1.8;min-height:100vh;}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .header{background:var(--bg2);border-bottom:1px solid var(--border);padding:20px 16px 16px;}
-.header-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
-.agent-badge{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.05em;}
-.agent-name{font-size:18px;font-weight:700;color:var(--tx);}
-.agent-role{font-size:13px;color:var(--tx2);margin-top:2px;}
+.header-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
+.agent-badge{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.05em;white-space:nowrap;}
+.agent-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--tx);line-height:1.3;}
+.agent-role{font-size:13px;color:var(--tx2);margin-top:3px;}
+.topic-label{font-size:13px;color:var(--gold);margin-top:6px;font-weight:600;}
 .meta-row{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--tx3);}
-.meta-row span{display:flex;align-items:center;gap:4px;}
-.cache-badge{background:rgba(22,160,133,0.15);color:#1abc9c;font-size:11px;padding:4px 10px;border-radius:4px;margin-top:8px;display:inline-block;}
-
-/* PROMPT */
+.cache-badge{background:rgba(22,160,133,.15);color:#1abc9c;font-size:11px;padding:4px 10px;border-radius:4px;margin-top:8px;display:inline-block;}
 .prompt-box{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin:16px;font-size:13px;color:var(--tx2);}
 .prompt-label{font-size:11px;color:var(--tx3);margin-bottom:6px;letter-spacing:.08em;}
-
-/* CONTENT */
 .content{padding:0 16px 40px;}
-.content h2{font-size:16px;font-weight:700;color:var(--gold);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+.content h2{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--gold);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
 .content h3{font-size:14px;font-weight:700;color:var(--accent);margin:20px 0 8px;}
 .content h4{font-size:13px;font-weight:700;color:var(--tx2);margin:16px 0 6px;}
 .content p{margin:0 0 12px;color:var(--tx);}
-.content br{line-height:0}
-.content ul,.content ol{margin:8px 0 12px 20px;}
+.content ul{margin:8px 0 12px 20px;}
 .content li{margin-bottom:6px;color:var(--tx);}
 .content strong{color:var(--tx);font-weight:700;}
 .content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;overflow-x:auto;display:block;}
-.content th{background:var(--bg3);color:var(--gold);padding:8px 12px;text-align:left;border:1px solid var(--border);white-space:nowrap;}
 .content td{padding:8px 12px;border:1px solid var(--border);color:var(--tx);vertical-align:top;}
-.content tr:hover td{background:rgba(200,169,110,0.04);}
-
-/* FOOTER */
-.footer{background:var(--bg2);border-top:1px solid var(--border);padding:16px;font-size:12px;color:var(--tx3);text-align:center;}
-.footer a{color:var(--tx3)}
-
-/* BACK LINK */
+.content tr:first-child td{background:var(--bg3);color:var(--gold);font-weight:600;}
 .back-link{display:block;padding:12px 16px;font-size:13px;color:var(--tx3);border-bottom:1px solid var(--border);}
 .back-link:hover{color:var(--gold)}
+.footer{background:var(--bg2);border-top:1px solid var(--border);padding:16px;font-size:12px;color:var(--tx3);text-align:center;}
 </style>
 </head>
 <body>
-
-<a class="back-link" href="../../index.html">← レポート一覧に戻る</a>
-
+<a class="back-link" href="../../index.html">← ダッシュボードに戻る</a>
 <div class="header">
   <div class="header-top">
     <div>
       <span class="agent-badge">Agent 05</span>
       <div class="agent-name">✍️ Copywriter</div>
       <div class="agent-role">コピーライティング設計</div>
+      <div class="topic-label">📌 糸井重里の文体研究をお願いします。「ほぼ日」の言葉が持つ独特のトーンと、AKARIのブランドボイスへの転用可能性を分析し</div>
     </div>
   </div>
   <div class="meta-row">
-    <span>📅 2026/04/24 15:07</span>
+    <span>📅 2026/4/24 15:07:37</span>
     <span>📆 2026-W17</span>
     <span>📥 1025 in</span>
     <span>📤 2447 out</span>
   </div>
-  <div class="cache-badge">⚡ キャッシュ: 0 tokens 再利用 / 0 tokens 新規作成</div>
+  
 </div>
-
 <div class="prompt-box">
   <div class="prompt-label">PROMPT</div>
   糸井重里の文体研究をお願いします。「ほぼ日」の言葉が持つ独特のトーンと、AKARIのブランドボイスへの転用可能性を分析してください。
 </div>
-
-<div class="content">
-<p></p><p># 糸井重里の文体研究</p><p>---</p><p><h2>文体研究サマリー</h2></p><p>糸井重里の言葉は「大きなことを小さく言う」技術に貫かれている。哲学的な洞察を、買い物袋を持った帰り道のひとりごとのように差し出す。読者を「説得」せず、隣に座って同じ方向を見る。権威も韻律も使わず、ただ「あ、そうだったのか」という小さな発見の手触りだけを残す。広告コピーの切れ味と、日記の体温が同居する、日本語の最も柔らかい説得装置。</p><p>---</p><p><h2>特徴的な技法の抽出</h2></p><p><h3>1. 日常語による抽象の着地</h3><br>「くうねるあそぶ」——人生の本質を、幼児でも知っている動詞3つに落とす。大きな概念を、わざと一番小さな言葉で受け止める。抽象度を上げず、解像度を下げることで、受け手の余白が広がる。</p><p><h3>2. 「。」の呼吸設計</h3><br>「おいしい生活。」「ほぼ日刊イトイ新聞。」——句点を打つ位置が、沈黙を設計している。一文を短くし、句点で息を止めさせることで、読者の頭の中に「反芻の間」を作る。コピーではなく、呼吸のデザイン。</p><p><h3>3. 主語の消去と「われわれ化」</h3><br>「ぼくは」とも「あなたは」とも言わない瞬間が多い。主語を消すことで、読んだ人が自動的に主語になる。あるいは「人って」「みんな」ではなく、主語なしの述語だけを浮かせて、誰の言葉でもある状態を作る。</p><p><h3>4. 肯定の迂回路</h3><br>否定しない。「ダメだ」と言わない。代わりに「こっちもいいんじゃない？」という別の景色を見せる。反論ではなく、隣の道を指さす。これが糸井の言葉に説教臭がない最大の理由。</p><p><h3>5. 動詞で終わる余韻</h3><br>「考える人」「していく。」「やってみる。」——名詞止めではなく、動詞で終わらせることで、文の先に「まだ続く時間」を感じさせる。完結しない。だから読者は、その先を自分の時間で引き受ける。</p><p><h3>6. 「発見の追体験」構造</h3><br>結論を先に出さず、「あれ？」という気づきの過程ごと言葉にする。読者は情報を受け取るのではなく、糸井と一緒に「今、気づいた」体験をする。これが親密さの正体。</p><p><h3>7. カタカナ・ひらがなの意図的選択</h3><br>漢字を避け、ひらがなに開くことで、言葉の「重力」を下げる。「働く」→「はたらく」、「言葉」→「ことば」。視覚的にも、読む速度と心理的圧力を調整している。</p><p>---</p><p><h2>AKARIへの転用案</h2></p><p><h3>ヘッドラインコピー候補 × 5</h3></p><p><strong>1.「きのうの自分を、ちょっとだけ好きになる。」</strong><br>→ 自己肯定のハードルを最小化。「ちょっとだけ」が糸井的な力加減。</p><p><strong>2.「なにもしなかった日も、ちゃんと一日だった。」</strong><br>→ 空白の日を肯定する。「ちゃんと」がAKARIのコアトーンと接続。</p><p><strong>3.「自分のことって、自分がいちばん後回しにしてる。」</strong><br>→ 主語なし・発見の追体験構造。読んだ人が「あ、私のことだ」となる設計。</p><p><strong>4.「ぜんぶわかんなくても、なんとなくわかってる。」</strong><br>→ 曖昧さの肯定。AKARIの「ゆるやかな自己理解」の世界観そのもの。</p><p><strong>5.「今日の気分を、ひとつだけ選んでみる。」</strong><br>→ アプリ起動時の最初の行動を言語化。動詞で終わり、先が続く。</p><p>---</p><p><h3>UIマイクロコピー候補 × 3</h3></p><p><strong>① 気分選択画面のラベル</strong><br>現行想定：「今の気分を選んでください」<br>→ 改善案：<strong>「いま、どんなかんじ？」</strong><br>（ひらがな開き＋疑問形で心理的コストを下げる）</p><p><strong>② 振り返り画面の見出し</strong><br>現行想定：「今週のまとめ」<br>→ 改善案：<strong>「あなたの一週間、こんなだったよ。」</strong><br>（AKARIが隣で見ていた視点。報告ではなく、共有）</p><p><strong>③ 何も記録しなかった日の表示</strong><br>現行想定：「記録がありません」<br>→ 改善案：<strong>「この日は、静かだったね。」</strong><br>（空白を欠落ではなく、ひとつの状態として肯定）</p><p>---</p><p><h3>キャラクターの一言 × 5</h3></p><p><strong>1.</strong><br>「がんばった日より、がんばれなかった日のほうが、なんか覚えてるよね。それも大事な日だよ。」</p><p><strong>2.</strong><br>「今日、誰にもやさしくできなかったとしても、少なくとも自分には怒らないでいてあげて。」</p><p><strong>3.</strong><br>「やらなきゃいけないこと、いったん横に置いて。……うん、置けた？ じゃあ深呼吸ひとつ。」</p><p><strong>4.</strong><br>「きのうと今日で気分がぜんぜん違うの、おかしいことじゃないよ。天気だってそうじゃん。」</p><p><strong>5.</strong><br>「言葉にできない気持ちって、言葉にしなくていい気持ちかもしれないよ。そのまま持ってて。」</p><p>---</p><p><h2>この文体のリスク・AKARIとの相性評価</h2></p><p><strong>相性の良い場面：</strong><br>毎日の語りかけ、空白の肯定、初回オンボーディング、ストアページ説明文。糸井的トーンは「何も特別なことを言っていないのに、なぜか安心する」状態を作れる。自己開示が苦手なユーザーに対して、開示を求めず「ただ隣にいる」空気を設計できる。AKARIの「ちゃんと、見てたよ」との親和性は極めて高い。</p><p><strong>リスク・相性の悪い場面：</strong><br>過剰適用すると<strong>「ずっとやさしいだけの人」</strong>になる。糸井の言葉は「日常の小さな発見」に最適化されているため、ユーザーが本当に苦しいとき・変化を必要としているときに、<strong>やさしさが壁になる</strong>可能性がある。「わかってくれてるけど、何も変わらない」という停滞感。また、全てをひらがなに開きすぎると、幼稚な印象やブランドの軽量化が起きる。<strong>切実な瞬間には別の刃物が要る。</strong></p><p>---</p><p><h2>次に研究すべき文体・コピーライター</h2></p><p><strong>岡本欣也（「バカヤロー」を愛に変換する力）</strong></p><p>糸井の「やわらかく肯定する」言葉の対極として、岡本欣也の「一見乱暴だが本質を突く」コピーを研究すべき。「人は関係の生きもの」的なコピーに見られる、短い断言の力。AKARIが「やさしいだけの存在」に留まらないために、ユーザーの背中を一瞬で押す「鋭いやさしさ」の技法が必要になる。糸井が「隣に座る」なら、岡本は「目を見て一言だけ言う」。その一言の設計法を次に解析したい。</p>
-</div>
-
+<div class="content"><p></p><p># 糸井重里の文体研究</p><p>---</p><p><h2>文体研究サマリー</h2></p><p>糸井重里の言葉は「大きなことを小さく言う」技術に貫かれている。哲学的な洞察を、買い物袋を持った帰り道のひとりごとのように差し出す。読者を「説得」せず、隣に座って同じ方向を見る。権威も韻律も使わず、ただ「あ、そうだったのか」という小さな発見の手触りだけを残す。広告コピーの切れ味と、日記の体温が同居する、日本語の最も柔らかい説得装置。</p><p>---</p><p><h2>特徴的な技法の抽出</h2></p><p><h3>1. 日常語による抽象の着地</h3><br>「くうねるあそぶ」——人生の本質を、幼児でも知っている動詞3つに落とす。大きな概念を、わざと一番小さな言葉で受け止める。抽象度を上げず、解像度を下げることで、受け手の余白が広がる。</p><p><h3>2. 「。」の呼吸設計</h3><br>「おいしい生活。」「ほぼ日刊イトイ新聞。」——句点を打つ位置が、沈黙を設計している。一文を短くし、句点で息を止めさせることで、読者の頭の中に「反芻の間」を作る。コピーではなく、呼吸のデザイン。</p><p><h3>3. 主語の消去と「われわれ化」</h3><br>「ぼくは」とも「あなたは」とも言わない瞬間が多い。主語を消すことで、読んだ人が自動的に主語になる。あるいは「人って」「みんな」ではなく、主語なしの述語だけを浮かせて、誰の言葉でもある状態を作る。</p><p><h3>4. 肯定の迂回路</h3><br>否定しない。「ダメだ」と言わない。代わりに「こっちもいいんじゃない？」という別の景色を見せる。反論ではなく、隣の道を指さす。これが糸井の言葉に説教臭がない最大の理由。</p><p><h3>5. 動詞で終わる余韻</h3><br>「考える人」「していく。」「やってみる。」——名詞止めではなく、動詞で終わらせることで、文の先に「まだ続く時間」を感じさせる。完結しない。だから読者は、その先を自分の時間で引き受ける。</p><p><h3>6. 「発見の追体験」構造</h3><br>結論を先に出さず、「あれ？」という気づきの過程ごと言葉にする。読者は情報を受け取るのではなく、糸井と一緒に「今、気づいた」体験をする。これが親密さの正体。</p><p><h3>7. カタカナ・ひらがなの意図的選択</h3><br>漢字を避け、ひらがなに開くことで、言葉の「重力」を下げる。「働く」→「はたらく」、「言葉」→「ことば」。視覚的にも、読む速度と心理的圧力を調整している。</p><p>---</p><p><h2>AKARIへの転用案</h2></p><p><h3>ヘッドラインコピー候補 × 5</h3></p><p><strong>1.「きのうの自分を、ちょっとだけ好きになる。」</strong><br>→ 自己肯定のハードルを最小化。「ちょっとだけ」が糸井的な力加減。</p><p><strong>2.「なにもしなかった日も、ちゃんと一日だった。」</strong><br>→ 空白の日を肯定する。「ちゃんと」がAKARIのコアトーンと接続。</p><p><strong>3.「自分のことって、自分がいちばん後回しにしてる。」</strong><br>→ 主語なし・発見の追体験構造。読んだ人が「あ、私のことだ」となる設計。</p><p><strong>4.「ぜんぶわかんなくても、なんとなくわかってる。」</strong><br>→ 曖昧さの肯定。AKARIの「ゆるやかな自己理解」の世界観そのもの。</p><p><strong>5.「今日の気分を、ひとつだけ選んでみる。」</strong><br>→ アプリ起動時の最初の行動を言語化。動詞で終わり、先が続く。</p><p>---</p><p><h3>UIマイクロコピー候補 × 3</h3></p><p><strong>① 気分選択画面のラベル</strong><br>現行想定：「今の気分を選んでください」<br>→ 改善案：<strong>「いま、どんなかんじ？」</strong><br>（ひらがな開き＋疑問形で心理的コストを下げる）</p><p><strong>② 振り返り画面の見出し</strong><br>現行想定：「今週のまとめ」<br>→ 改善案：<strong>「あなたの一週間、こんなだったよ。」</strong><br>（AKARIが隣で見ていた視点。報告ではなく、共有）</p><p><strong>③ 何も記録しなかった日の表示</strong><br>現行想定：「記録がありません」<br>→ 改善案：<strong>「この日は、静かだったね。」</strong><br>（空白を欠落ではなく、ひとつの状態として肯定）</p><p>---</p><p><h3>キャラクターの一言 × 5</h3></p><p><strong>1.</strong><br>「がんばった日より、がんばれなかった日のほうが、なんか覚えてるよね。それも大事な日だよ。」</p><p><strong>2.</strong><br>「今日、誰にもやさしくできなかったとしても、少なくとも自分には怒らないでいてあげて。」</p><p><strong>3.</strong><br>「やらなきゃいけないこと、いったん横に置いて。……うん、置けた？ じゃあ深呼吸ひとつ。」</p><p><strong>4.</strong><br>「きのうと今日で気分がぜんぜん違うの、おかしいことじゃないよ。天気だってそうじゃん。」</p><p><strong>5.</strong><br>「言葉にできない気持ちって、言葉にしなくていい気持ちかもしれないよ。そのまま持ってて。」</p><p>---</p><p><h2>この文体のリスク・AKARIとの相性評価</h2></p><p><strong>相性の良い場面：</strong><br>毎日の語りかけ、空白の肯定、初回オンボーディング、ストアページ説明文。糸井的トーンは「何も特別なことを言っていないのに、なぜか安心する」状態を作れる。自己開示が苦手なユーザーに対して、開示を求めず「ただ隣にいる」空気を設計できる。AKARIの「ちゃんと、見てたよ」との親和性は極めて高い。</p><p><strong>リスク・相性の悪い場面：</strong><br>過剰適用すると<strong>「ずっとやさしいだけの人」</strong>になる。糸井の言葉は「日常の小さな発見」に最適化されているため、ユーザーが本当に苦しいとき・変化を必要としているときに、<strong>やさしさが壁になる</strong>可能性がある。「わかってくれてるけど、何も変わらない」という停滞感。また、全てをひらがなに開きすぎると、幼稚な印象やブランドの軽量化が起きる。<strong>切実な瞬間には別の刃物が要る。</strong></p><p>---</p><p><h2>次に研究すべき文体・コピーライター</h2></p><p><strong>岡本欣也（「バカヤロー」を愛に変換する力）</strong></p><p>糸井の「やわらかく肯定する」言葉の対極として、岡本欣也の「一見乱暴だが本質を突く」コピーを研究すべき。「人は関係の生きもの」的なコピーに見られる、短い断言の力。AKARIが「やさしいだけの存在」に留まらないために、ユーザーの背中を一瞬で押す「鋭いやさしさ」の技法が必要になる。糸井が「隣に座る」なら、岡本は「目を見て一言だけ言う」。その一言の設計法を次に解析したい。</p></div>
 <div class="footer">
   AKARI / スリーライツ株式会社（設立準備中）<br>
   <a href="https://github.com/ksk0527/akari-app">ksk0527/akari-app</a>
 </div>
-
 </body>
 </html>
