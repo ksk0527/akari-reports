@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKARI Agent Reports</title>
+<style>
+:root{--bg:#0a0a1a;--bg2:#12122a;--tx:#e8e8f8;--tx2:#a8a8c8;--tx3:#6868a8;--gold:#c8a96e;--border:rgba(200,169,110,0.15);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;padding:0;}
+.header{background:var(--bg2);padding:24px 16px;border-bottom:1px solid var(--border);}
+.header h1{font-size:22px;color:var(--gold);margin-bottom:4px;}
+.header p{font-size:13px;color:var(--tx2);}
+.content{padding:16px;}
+table{width:100%;border-collapse:collapse;font-size:14px;}
+th{background:var(--bg2);color:var(--tx2);padding:10px 12px;text-align:left;border-bottom:2px solid var(--border);font-size:12px;letter-spacing:.05em;}
+td{padding:12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+tr:hover td{background:rgba(200,169,110,0.04);}
+a{color:var(--gold);text-decoration:none;}
+.badge{font-size:11px;padding:3px 8px;border-radius:4px;color:#fff;display:inline-block;white-space:nowrap;}
+.footer{text-align:center;font-size:12px;color:var(--tx3);padding:24px 16px;}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>✨ AKARI Agent Reports</h1>
+  <p>スリーライツ株式会社（設立準備中）— 週次エージェントレポート</p>
+</div>
+<div class="content">
+  <table>
+    <thead><tr><th>エージェント</th><th>役割</th><th>週</th><th>レポート</th></tr></thead>
+    <tbody>
+    <tr onclick="location.href='agent_04/2026-W17.html'" style="cursor:pointer">
+      <td><span class="badge" style="background:#9b59b6">🧠 Agent 04</span></td>
+      <td>Deep Research</td>
+      <td>2026-W17</td>
+      <td><a href="agent_04/2026-W17.html">レポートを見る →</a></td>
+    </tr>
+    <tr onclick="location.href='agent_05/2026-W17.html'" style="cursor:pointer">
+      <td><span class="badge" style="background:#e8540a">✍️ Agent 05</span></td>
+      <td>Copywriter</td>
+      <td>2026-W17</td>
+      <td><a href="agent_05/2026-W17.html">レポートを見る →</a></td>
+    </tr>
+    <tr onclick="location.href='agent_06/2026-W17.html'" style="cursor:pointer">
+      <td><span class="badge" style="background:#16a085">⚡ Agent 06</span></td>
+      <td>Content Factory</td>
+      <td>2026-W17</td>
+      <td><a href="agent_06/2026-W17.html">レポートを見る →</a></td>
+    </tr>
+    <tr onclick="location.href='agent_07/2026-W17.html'" style="cursor:pointer">
+      <td><span class="badge" style="background:#c0392b">🎯 Agent 07</span></td>
+      <td>Quality Reviewer</td>
+      <td>2026-W17</td>
+      <td><a href="agent_07/2026-W17.html">レポートを見る →</a></td>
+    </tr></tbody>
+  </table>
+</div>
+<div class="footer">AKARI / <a href="https://github.com/ksk0527/akari-app">ksk0527/akari-app</a></div>
+</body>
+</html>
